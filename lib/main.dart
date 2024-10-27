@@ -1,6 +1,7 @@
 import 'package:book_store/const/data.dart';
 import 'package:book_store/log_in.dart';
 import 'package:book_store/main_page.dart';
+import 'package:book_store/search.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -36,6 +37,7 @@ class Test extends StatelessWidget {
         '/mainPage': (context) => const MainPage(),
         '/viewAll': (context) => const ViewAll(),
         '/list': (context) => const ListPage(),
+        '/search': (context) => SearchPage(ModalRoute.of(context)!.settings.arguments as String),
       },
       initialRoute: '/',
     );

@@ -24,10 +24,10 @@ class UpBar extends StatelessWidget {
                 child: SizedBox(height: 48, child: Image.asset("assets/icon.png")))
             : SizedBox(height: 48, child: Image.asset("assets/icon.png")),
         const SizedBox(width: 24),
-        const Expanded(
+        Expanded(
           child: TextField(
             cursorColor: orangeColor,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               prefixIcon: Icon(Icons.search, color: hintColor),
               hintText: "search",
               hintStyle: TextStyle(color: hintColor),
@@ -38,6 +38,11 @@ class UpBar extends StatelessWidget {
                 borderSide: BorderSide(color: hintColor),
               ),
             ),
+            onSubmitted: (value) {
+              if (value.isNotEmpty) {
+                Navigator.pushNamed(context, "/search", arguments: value);
+              }
+            },
           ),
         ),
         const SizedBox(width: 24),

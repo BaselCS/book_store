@@ -57,6 +57,22 @@ class _ReservationListState extends State<ReservationList> {
                       child: const Text("OK", style: TextStyle(color: orangeColor)))
                 ]);
           });
+    } else if (borrowList.where((element) => element.isAvailable == false).isNotEmpty) {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+                backgroundColor: backgroundColor,
+                title: const Text("Error", style: TextStyle(fontWeight: FontWeight.bold)),
+                content: const Text("Some books are not available", style: TextStyle(fontWeight: FontWeight.w100)),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text("OK", style: TextStyle(color: orangeColor)))
+                ]);
+          });
     } else {
       setState(() {
         for (int i = 0; i < borrowList.length; i++) {
