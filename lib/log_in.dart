@@ -35,28 +35,28 @@ class _LongUIState extends State<LongUI> {
   bool isPasswordHidden = false;
 
   void check() {
-    // if (id == "222222222" && password == "123456") {
-    Navigator.pushNamed(context, "/mainPage");
-    // } else {
-    //   showDialog(
-    //     context: context,
-    //     builder: (context) { 
-    //       return AlertDialog(
-    //         backgroundColor: backgroundColor,
-    //         title: const Text("Error", style: TextStyle(fontWeight: FontWeight.bold)),
-    //         content: const Text("Invalid ID or Password"),
-    //         actions: [
-    //           TextButton(
-    //             onPressed: () {
-    //               Navigator.pop(context);
-    //             },
-    //             child: const Text("OK", style: TextStyle(color: orangeColor)),
-    //           ),
-    //         ],
-    //       );
-    //     },
-    //   );
-    // }
+    if (id == "222456789" && password == "123456789") {
+      Navigator.pushNamed(context, "/mainPage");
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            backgroundColor: backgroundColor,
+            title: const Text("Error", style: TextStyle(fontWeight: FontWeight.bold)),
+            content: const Text("Invalid ID or Password"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text("OK", style: TextStyle(color: orangeColor)),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   @override

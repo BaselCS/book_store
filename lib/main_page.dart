@@ -8,8 +8,35 @@ import 'const/up_bar.dart';
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
 
+  void showMsg(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            backgroundColor: backgroundColor,
+            title: const Text("Error", style: TextStyle(fontWeight: FontWeight.bold)),
+            content: const Text("More Than 10000 Books"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text("OK", style: TextStyle(color: orangeColor)),
+              ),
+            ],
+          );
+        },
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (modelList.length > 10000) {
+      showMsg(context);
+    }
+
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: backgroundColor,
