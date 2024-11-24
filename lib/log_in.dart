@@ -1,5 +1,5 @@
+import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:flutter/material.dart';
-
 import 'const/colors.dart';
 
 class LogIn extends StatelessWidget {
@@ -35,7 +35,10 @@ class _LongUIState extends State<LongUI> {
   bool isPasswordHidden = false;
 
   void check() {
-    if (id == "222456789" && password == "123456789") {
+    // id : 222456789
+    // passsword : 123456789
+    Encryption encryption = Encryption();
+    if (encryption.encryptData(id) == "D9Oyl//54CcPLDr/7bRo8A==" && encryption.encryptData(password) == "DNOzl//54CcPLDr/7bRo8A==") {
       Navigator.pushNamed(context, "/mainPage");
     } else {
       showDialog(
@@ -149,5 +152,25 @@ class _LongUIState extends State<LongUI> {
         ),
       ),
     );
+  }
+}
+
+class Encryption {
+// Define the key and IV globally (or securely store them)
+  final key = encrypt.Key.fromUtf8('my32characterrandomkey1234567890'); // 32 chars key
+  final iv = encrypt.IV.fromUtf8('my16charrandomIV'); // 16 chars IV
+
+// Function for encryption
+  String encryptData(String data) {
+    final encrypter = encrypt.Encrypter(encrypt.AES(key));
+    final encrypted = encrypter.encrypt(data, iv: iv);
+    return encrypted.base64; // Return Base64 encoded string
+  }
+
+// Function for decryption
+  String decryptData(String encryptedData) {
+    final encrypter = encrypt.Encrypter(encrypt.AES(key));
+    final decrypted = encrypter.decrypt64(encryptedData, iv: iv);
+    return decrypted;
   }
 }
